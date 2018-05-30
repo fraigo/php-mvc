@@ -1,0 +1,5 @@
+name,control,type
+string,text,varchar(255)
+int,number,int
+decimal,number,float
+date,date,date

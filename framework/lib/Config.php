@@ -11,8 +11,12 @@ class Config {
     return $path;
   }
 
+  static function fileData($path,$base=null){
+    return file_get_contents(Config::fileName($path,$base));
+  }
+
   static function getJson($path){
-    return json_decode(file_get_contents(Config::filename($path)),true);
+    return json_decode(Config::fileData($path),true);
   }
 
   static function saveJson($path,$data){

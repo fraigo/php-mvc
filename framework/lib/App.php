@@ -22,7 +22,7 @@ class App {
   function db($name=null){
     $names=array_keys($this->databaseConfig["connections"]);
     if ($name===null){
-      $name=$this->databaseConfig["default"]?:$names[0];
+      $name=$this->databaseConfig["defaultConnection"]?:$names[0];
     }
     return $this->databases[$name];
   }
@@ -40,11 +40,11 @@ class App {
     if ($controllerName==""){
       $controllerName = "default";
     }
-    $controllerName=ucfirst($controllerName);
+    $controllerClass=ucfirst($controllerName)."Controller";
     
     $params=$_GET;
 
-    $controllerClass="controllers\\{$controllerName}Controller";
+    $controllerClass="controllers\\{$controllerClass}";
     $actionMethod="action$action";
     $controller = new $controllerClass();
     $controller->setup($this,$controllerName,$action,$basepath);

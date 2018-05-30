@@ -14,11 +14,15 @@ class DefaultController{
   }
 
   function route($route,$params=[]){
+    list($route,$action)=explode("/",$route);
+    if ($route==""){
+      $route=$this->route;
+    }
     $extra="";
     if (count($params)){
       $extra="?".http_build_query($params);
     }
-    return "$this->basepath/$route$extra";
+    return "$this->basepath/$route/$action$extra";
   }
 
   function setup($app,$route,$action,$basepath){
@@ -29,8 +33,13 @@ class DefaultController{
   }
 
   function actionIndex(){
-    echo $this->renderLayout("default/list",$this->getViewData());
+    echo $this->renderLayout("default/index",$this->getViewData());
   }
+
+  function actionEdit($params=[]){
+    echo $this->renderLayout("default/edit",$this->getViewData($params));
+  }
+
 
   function redirect($route,$params=[]){
     $route=$this->route($route,$params);

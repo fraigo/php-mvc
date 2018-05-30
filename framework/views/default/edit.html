@@ -1,0 +1,9 @@
+<h2>Edit Item</h2>
+
+<div class="edit-item">
+<?php echo $controller->renderView("default/form",[
+    "values"=>$item,
+    "action"=>$controller->route("/update"),
+    "name"=>"item"
+  ]); ?>
+</div>

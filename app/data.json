@@ -1,24 +1,38 @@
 {
   "entities":{
+    "type":{
+      "name":"Type",
+      "collection":"Types",
+      "fields":[
+        {
+          "name":"name",
+          "type":"string"
+        }
+      ]
+    },
     "category":{
+      "name":"Category",
+      "collection":"Categories",
       "fields":[
         {
           "name":"title",
-          "type":"string",
+          "type":"text",
           "default":""
         },
         {
           "name":"position",
-          "type":"int",
+          "type":"number",
           "default":0
         }
       ]
     },
     "article":{
+      "name":"Article",
+      "collection":"Articles",
       "fields":[
        {
         "name":"title",
-        "type":"string"
+        "type":"text"
        },
        {
         "name":"category",

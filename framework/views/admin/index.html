@@ -17,3 +17,13 @@
     "name"=>"db"
     ]); ?>
 </div>
+
+
+<h3>Data Structures</h3>
+<div class="config-data">
+  <?php echo $controller->renderView("default/form",[
+    "values"=>$data,
+    "action"=>$controller->route("admin/update"),
+    "name"=>"data"
+    ]); ?>
+</div>

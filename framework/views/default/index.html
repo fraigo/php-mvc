@@ -1,0 +1,35 @@
+<h2><?php echo $title?:"Index" ?></h2>
+
+<table cellpadding="0" cellspacing="0" class="index-table">
+    <thead>
+        <tr>
+            <?php foreach($items[0] as $field=>$value){ ?>        
+            <th><?php echo ucfirst($field)?></th>        
+            <?php } ?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($items as $index=>$item){ ?>
+        <tr>
+            <?php foreach($item as $field=>$value){ ?>        
+            <td><?php echo $value?></td>        
+            <?php } ?>
+            <td><a href="<?php echo $controller->route('/edit',['id'=>$index]); ?>" >Edit</a></td>
+        </tr>
+    </tbody>
+<?php } ?>
+</table>
+<style>
+.index-table{
+    border:1px solid #CCC;
+}
+.index-table td {
+    border:1px solid #CCC;
+    padding:3px;
+}
+.index-table th {
+    border:1px solid #CCC;
+    padding:3px;
+}
+
+</style>

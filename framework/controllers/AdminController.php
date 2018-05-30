@@ -6,10 +6,10 @@ use lib\Config;
 
 class AdminController extends DefaultController{
 
-  private $configs=["app","db"];
+  private $configs=["app","db","data"];
 
   function actionIndex(){
-    echo $this->renderLayout("admin/list",$this->getViewData());
+    echo $this->renderLayout("admin/index",$this->getViewData());
   }
 
   function actionUpdate(){
