@@ -1,0 +1,19 @@
+<h3><?php echo $title; ?></h3>
+<form>
+<?php foreach($values as $key => $value) { ?> 
+<div class="form-field">
+  <div class="field-label" ><label for="<?php echo $key ?>" ><?php echo $key ?></label></div>  
+  <div class="field-value" ><input type="text" id="<?php echo $key ?>" name="<?php echo $key ?>" value="<?php echo $value ?>"></div> 
+</div>
+<?php } ?>
+</form>
+<style>
+  .field-label{
+    display:inline-block;
+    width:200px;
+  }
+  .field-value{
+    display:inline-block;
+    width:200px;
+  }
+</style>

@@ -1,0 +1,31 @@
+{
+  "entities":{
+    "category":{
+      "fields":[
+        {
+          "name":"title",
+          "type":"string",
+          "default":""
+        },
+        {
+          "name":"position",
+          "type":"int",
+          "default":0
+        }
+      ]
+    },
+    "article":{
+      "fields":[
+       {
+        "name":"title",
+        "type":"string"
+       },
+       {
+        "name":"category",
+        "type":"category"
+       } 
+      ]
+    }
+  }
+  
+}

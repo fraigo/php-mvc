@@ -1,0 +1,13 @@
+{
+  "default":"default",
+  "connections":{
+    "default":{
+      "host":"localhost",
+      "user":"root",
+      "password":"",
+      "database":"app",
+      "charset":"utf8",
+      "commands":[]
+    }
+  }
+}

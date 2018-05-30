@@ -1,0 +1,9 @@
+<h2>Admin</h2>
+
+<div class="config-section">
+<?php echo $controller->renderView("default/form",["values"=>$config]); ?>
+</div>
+
+<div class="config-db">
+  <?php echo $controller->renderView("default/form",["values"=>$db]); ?>
+</div>
