@@ -19,6 +19,7 @@ class AdminController extends DefaultController{
     if($_POST["db"]){
       Config::saveJson("db.json",$_POST["db"]);
     }
+    $this->redirect("admin/index");
   }
 
   function getViewData(){

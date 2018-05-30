@@ -13,8 +13,12 @@ class DefaultController{
     
   }
 
-  function route($route){
-    return "$this->basepath/$route";
+  function route($route,$params=[]){
+    $extra="";
+    if (count($params)){
+      $extra="?".http_build_query($params);
+    }
+    return "$this->basepath/$route$extra";
   }
 
   function setup($app,$route,$action,$basepath){
@@ -28,6 +32,11 @@ class DefaultController{
     echo $this->renderLayout("default/list",$this->getViewData());
   }
 
+  function redirect($route,$params=[]){
+    $route=$this->route($route,$params);
+    header("Location: $route");
+  }
+
   function renderView($_name,$_data){
     foreach($_data as $key=>$value){
       $$key = $value;
@@ -39,9 +48,9 @@ class DefaultController{
   }
 
   function renderLayout($view,$data){
-    return $this->renderView("layout/index",[
-      "content"=>$this->renderView($view,$data)
-    ]);
+    $layoutData=\lib\Config::getJson("app.json");
+    $layoutData["content"]=$this->renderView($view,$data);
+    return $this->renderView("layout/index", $layoutData);
   }
 
   function getViewData(){
