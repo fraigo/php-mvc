@@ -1,5 +1,5 @@
 {
-  "title":"MVC App Demo",
-  "description":"MVC PHP application demo",
-  "icon":"images/icon.png"
+    "title": "MVC App Demo",
+    "description": "MVC PHP application demo",
+    "icon": "images\/icon.png"
 }

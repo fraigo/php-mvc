@@ -3,7 +3,7 @@
 <h3>App Config</h3>
 <div class="config-section">
 <?php echo $controller->renderView("default/form",[
-    "values"=>$config,
+    "values"=>$app,
     "action"=>$controller->route("admin/update"),
     "name"=>"app"
   ]); ?>
@@ -12,8 +12,8 @@
 <h3>Database Config</h3>
 <div class="config-db">
   <?php echo $controller->renderView("default/form",[
-    "values"=>$database,
+    "values"=>$db,
     "action"=>$controller->route("admin/update"),
-    "name"=>"database"
+    "name"=>"db"
     ]); ?>
 </div>

@@ -2,7 +2,11 @@
 
 namespace controllers;
 
+use lib\Config;
+
 class AdminController extends DefaultController{
+
+  private $configs=["app","db"];
 
   function actionIndex(){
     echo $this->renderLayout("admin/list",$this->getViewData());
@@ -10,17 +14,18 @@ class AdminController extends DefaultController{
 
   function actionUpdate(){
     if($_POST["app"]){
-      Config::saveJson("app.json",$_POST["database"]);
+      Config::saveJson("app.json",$_POST["app"]);
     }
-    if($_POST["database"]){
-      Config::saveJson("database.json",$_POST["database"]);
+    if($_POST["db"]){
+      Config::saveJson("db.json",$_POST["db"]);
     }
   }
 
   function getViewData(){
     $data=parent::getViewData();
-    $data["config"]=\lib\Config::getJson("app.json");
-    $data["database"]=\lib\Config::getJson("db.json");
+    foreach($this->configs as $config){
+      $data[$config]=\lib\Config::getJson("$config.json");
+    }
     return $data;
   }
 
