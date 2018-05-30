@@ -5,22 +5,36 @@ namespace controllers;
 class DefaultController{
 
   protected $app;
+  protected $action;
+  protected $route;
+  protected $basepath;
 
-  function setApp($app){
+  function __construct(){
+    
+  }
+
+  function route($route){
+    return "$this->basepath/$route";
+  }
+
+  function setup($app,$route,$action,$basepath){
     $this->app = $app;
+    $this->route = $route;
+    $this->action = $action;
+    $this->basepath = $basepath;
   }
 
   function actionIndex(){
     echo $this->renderLayout("default/list",$this->getViewData());
   }
 
-  function renderView($name,$data){
-    foreach($data as $key=>$value){
+  function renderView($_name,$_data){
+    foreach($_data as $key=>$value){
       $$key = $value;
     }
     $controller=$this;
     ob_start();
-    include(BASEDIR."/views/$name.html");
+    include(BASEDIR."/views/$_name.html");
     return ob_get_clean();
   }
 

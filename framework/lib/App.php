@@ -1,4 +1,4 @@
-<?
+<?php
 namespace lib;
 
 class App {
@@ -11,7 +11,11 @@ class App {
     $this->config = Config::getJson("app.json");
     $this->databaseConfig = Config::getJson("db.json");
     foreach($this->databaseConfig["connections"] as $name=>$db){
-      $this->databases[$name] = Database::connect($this->databaseConfig["connections"][$name]);
+      try{
+        $this->databases[$name] = Database::connect($this->databaseConfig["connections"][$name]);
+      }catch(\Exception $ex){
+        $this->databases[$name] = null;
+      }
     }
   }
 
@@ -24,24 +28,26 @@ class App {
   }
 
   function executeController(){
-    list($dummy,$controller,$action,$parameters)=explode("/",$_SERVER["PATH_INFO"]);
+    $pathinfo=explode("/",$_SERVER["PATH_INFO"]);
+    list($dummy,$controllerName,$action,$parameters)=$pathinfo;
+    $basepath=dirname($_SERVER["SCRIPT_NAME"]);
     
     if ($action==""){
       $action="index";
     }
     $action=ucfirst($action);
 
-    if ($controller==""){
-      $controller = "default";
+    if ($controllerName==""){
+      $controllerName = "default";
     }
-    $controller=ucfirst($controller);
+    $controllerName=ucfirst($controllerName);
     
     $params=$_GET;
 
-    $controllerClass="controllers\\{$controller}Controller";
+    $controllerClass="controllers\\{$controllerName}Controller";
     $actionMethod="action$action";
     $controller = new $controllerClass();
-    $controller->setApp($this);
+    $controller->setup($this,$controllerName,$action,$basepath);
 
     return $controller->$actionMethod($params);
   }

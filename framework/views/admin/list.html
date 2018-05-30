@@ -1,9 +1,19 @@
 <h2>Admin</h2>
 
+<h3>App Config</h3>
 <div class="config-section">
-<?php echo $controller->renderView("default/form",["values"=>$config]); ?>
+<?php echo $controller->renderView("default/form",[
+    "values"=>$config,
+    "action"=>$controller->route("admin/update"),
+    "name"=>"app"
+  ]); ?>
 </div>
 
+<h3>Database Config</h3>
 <div class="config-db">
-  <?php echo $controller->renderView("default/form",["values"=>$db]); ?>
+  <?php echo $controller->renderView("default/form",[
+    "values"=>$database,
+    "action"=>$controller->route("admin/update"),
+    "name"=>"database"
+    ]); ?>
 </div>
