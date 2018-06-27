@@ -6,17 +6,17 @@ class Database {
   private $connection;
 
 	static function connect($config,$error=true){
-    $db=new Database();
-		$conn=0;
-		try{
-			$conn = new \PDO("mysql:host={$config["host"]};dbname={$config["database"]};charset={$config["charset"]}", "{$config["user"]}","{$config["password"]}",$config["commands"]);
-		}catch(Exception $e){
-			if ($error){
-				header("HTTP/1.0 500 Server Error");
-				die();
-			}
-    }
-    $db->connection=$conn;
+		$db=new Database();
+			$conn=0;
+			try{
+				$conn = new \PDO("mysql:host={$config["host"]};dbname={$config["database"]};charset={$config["charset"]}", "{$config["user"]}","{$config["password"]}",$config["commands"]);
+			}catch(Exception $e){
+				if ($error){
+					header("HTTP/1.0 500 Server Error");
+					die();
+				}
+		}
+		$db->connection=$conn;
 		return $db;
 	}
 

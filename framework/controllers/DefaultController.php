@@ -40,6 +40,17 @@ class DefaultController{
     echo $this->renderLayout("default/edit",$this->getViewData($params));
   }
 
+  function actionUpdate($params=[]){
+    print_r($_POST);
+    foreach ($_POST as $key => $value){
+      echo $key;
+      $model=new \models\DatabaseModel($key);
+      $row=$model->find($value["id"]);
+      print_r([$key,$value,$row]);
+    }
+    die("OK");
+  }
+
 
   function redirect($route,$params=[]){
     $route=$this->route($route,$params);

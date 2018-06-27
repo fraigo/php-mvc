@@ -14,6 +14,7 @@ class App {
       try{
         $this->databases[$name] = Database::connect($this->databaseConfig["connections"][$name]);
       }catch(\Exception $ex){
+        echo $ex->getMessage();
         $this->databases[$name] = null;
       }
     }
@@ -62,6 +63,14 @@ class App {
 
   function start(){
     $this->executeController();
+  }
+
+  function executeCommand($params){
+    $scriptName = array_shift($params);
+    $commandName = array_shift($params);
+    $commandClass="\\commands\\$commandName";
+    $command=new $commandClass();
+    $command->run($this,$params);
   }
 
 }

@@ -3,6 +3,7 @@
     "type":{
       "name":"Type",
       "collection":"Types",
+      "autoincrement": true,
       "fields":[
         {
           "name":"name",
@@ -13,10 +14,11 @@
     "category":{
       "name":"Category",
       "collection":"Categories",
+      "autoincrement": true,
       "fields":[
         {
           "name":"title",
-          "type":"text",
+          "type":"string",
           "default":""
         },
         {
@@ -29,10 +31,11 @@
     "article":{
       "name":"Article",
       "collection":"Articles",
+      "autoincrement": true,
       "fields":[
        {
         "name":"title",
-        "type":"text"
+        "type":"string"
        },
        {
         "name":"category",
